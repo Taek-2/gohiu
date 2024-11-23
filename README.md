@@ -38,6 +38,4 @@ python -m flask run
 이 프로젝트는 Vercel에 배포되어 있습니다. 
 메인 브랜치에 push하면 자동으로 배포됩니다.
 
-## 문의
 
-카카오톡 오픈채팅: https://open.kakao.com/o/sGX5voag
