@@ -48,33 +48,25 @@ def evaluate_admission_chances(total_score, department):
 
 @app.route('/')
 def home():
-    return render_template('index.html', 
-                         humanities=humanities_departments.keys(),
-                         sciences=science_departments.keys())
+    return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
     
-    # 수능 원점수를 홍대식 점수로 변환
-    raw_scores = {
-        'korean': float(data['korean']),
-        'math': float(data['math']),
-        'english': int(data['english']),
-        'history': int(data['history']),
-        'select1': float(data['select1']),
-        'select2': float(data['select2']),
-        'department': data['department']
-    }
+    # 점수 변환
+    converted_scores = convert_to_hongik_score(data)
+    if "error" in converted_scores:
+        return jsonify(converted_scores), 400
+        
+    # 학과별 합격 가능성 평가
+    total_score = converted_scores["total_score"]
+    department = data["department"]
     
-    converted = convert_to_hongik_score(raw_scores)
-    result = evaluate_admission_chances(converted['total_score'], data['department'])
+    result = evaluate_admission_chances(total_score, department)
+    result.update(converted_scores)
     
-    return jsonify({
-        'total_score': converted['total_score'],
-        'converted_scores': converted['converted_scores'],
-        **result
-    })
+    return jsonify(result)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# Vercel Serverless Functions를 위한 WSGI 앱 노출
+app.debug = True
