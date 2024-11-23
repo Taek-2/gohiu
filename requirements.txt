@@ -1,13 +1,6 @@
 --no-binary=:all:
-setuptools>=65.6.0
-wheel>=0.38.1
-numpy==1.26.4
-pandas==2.2.1
-scikit-learn==1.0.2
 Flask==3.0.3
 Werkzeug==3.0.1
+numpy==1.26.4
+pandas==2.2.1
 gunicorn==21.2.0
-markupsafe==2.1.5
-click==8.1.7
-itsdangerous==2.1.2
-Jinja2==3.1.3
