@@ -19,6 +19,20 @@ def convert_to_hongik_score(raw_scores):
     }
     """
     
+    # 입력값 숫자로 변환
+    try:
+        raw_scores['english'] = int(raw_scores['english'])
+        raw_scores['history'] = int(raw_scores['history'])
+        raw_scores['korean'] = float(raw_scores['korean'])
+        raw_scores['math'] = float(raw_scores['math'])
+        raw_scores['select1'] = float(raw_scores['select1'])
+        raw_scores['select2'] = float(raw_scores['select2'])
+    except (ValueError, TypeError):
+        return {
+            "error": True,
+            "message": "올바른 점수를 입력해주세요."
+        }
+    
     # 영어 등급별 환산점수
     english_score = english_conversion[raw_scores['english'] - 1]
     

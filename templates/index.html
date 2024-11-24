@@ -180,11 +180,11 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="select1" class="form-label" id="select1Label">탐구1 표준점수</label>
-                                <input type="number" class="form-control" id="select1" required min="0" max="200">
+                                <input type="number" class="form-control" id="select1" required min="0" max="100">
                             </div>
                             <div class="col-md-4">
                                 <label for="select2" class="form-label" id="select2Label">탐구2 표준점수</label>
-                                <input type="number" class="form-control" id="select2" required min="0" max="200">
+                                <input type="number" class="form-control" id="select2" required min="0" max="100">
                             </div>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
             </div>
         </div>
 
-        <div id="resultBox" class="result-box">
+        <div id="resultBox" class="result-box" style="opacity: 0; transition: opacity 1s ease-in-out;">
             <h4 class="text-center">예측 결과</h4>
             <p class="text-center">모집단위: <span id="selectedDepartment"></span></p>
             <p class="text-center">홍익대 환산 총점: <span id="totalScore">0</span></p>
@@ -242,9 +242,15 @@
 
         function resetForm() {
             document.getElementById('predictionForm').style.display = 'block';
-            document.getElementById('resultBox').style.display = 'none';
-            document.getElementById('predictionForm').reset();
-            departmentSelect.disabled = true;
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.opacity = '0';
+            setTimeout(() => {
+                resultBox.style.display = 'none';
+                document.getElementById('predictionForm').reset();
+                departmentSelect.disabled = true;
+                document.getElementById('probabilityFill').style.transition = 'none';
+                document.getElementById('probabilityFill').style.width = '0%';
+            }, 500);
         }
 
         document.getElementById('predictionForm').addEventListener('submit', async (e) => {
@@ -277,11 +283,21 @@
                 document.getElementById('message').style.color = result.color;
                 
                 const probabilityFill = document.getElementById('probabilityFill');
-                probabilityFill.style.width = `${result.probability}%`;
+                probabilityFill.style.width = '0%';
                 probabilityFill.style.backgroundColor = result.color;
                 
                 document.getElementById('predictionForm').style.display = 'none';
-                document.getElementById('resultBox').style.display = 'block';
+                const resultBox = document.getElementById('resultBox');
+                resultBox.style.display = 'block';
+                
+                // 애니메이션 효과
+                setTimeout(() => {
+                    resultBox.style.opacity = '1';
+                    setTimeout(() => {
+                        probabilityFill.style.transition = 'width 1s ease-in-out';
+                        probabilityFill.style.width = `${result.probability}%`;
+                    }, 500);
+                }, 100);
             } catch (error) {
                 console.error('Error:', error);
                 alert('예측 중 오류가 발생했습니다.');

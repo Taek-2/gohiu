@@ -48,7 +48,9 @@ def evaluate_admission_chances(total_score, department):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    humanities = list(humanities_departments.keys())
+    sciences = list(science_departments.keys())
+    return render_template('index.html', humanities=humanities, sciences=sciences)
 
 @app.route('/predict', methods=['POST'])
 def predict():
