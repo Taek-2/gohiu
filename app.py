@@ -71,4 +71,4 @@ def predict():
     return jsonify(result)
 
 # Vercel Serverless Functions를 위한 WSGI 앱 노출
-app.debug = True
+app.debug = False
