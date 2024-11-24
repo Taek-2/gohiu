@@ -13,11 +13,27 @@ humanities_departments = {
     "영어영문학과": {"safe": 130.23, "expected": 129.09, "challenge": 127.87}
 }
 
+art_departments = {
+    "디자인컨버전스학부": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "프로덕트디자인학과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "실내디자인학과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "시각디자인학과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "산업디자인학과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "영상·애니메이션학과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "섬유·패션디자인학과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "디지털미디어디자인학과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "공예과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "회화과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "판화과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "조소과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "목조형가구학과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
+    "도예·유리과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80}
+}
+
 science_departments = {
     "건설환경공학과": {"safe": 130.60, "expected": 129.31, "challenge": 127.70},
     "건축학부(건축학)": {"safe": 132.90, "expected": 131.82, "challenge": 130.42},
     "건축학부(실내건축학)": {"safe": 131.53, "expected": 130.31, "challenge": 128.77},
-    "금속조형디자인과": {"safe": 78.48, "expected": 77.88, "challenge": 76.80},
     "기계시스템디자인공학과": {"safe": 130.79, "expected": 129.53, "challenge": 127.98},
     "도시공학과": {"safe": 130.68, "expected": 129.44, "challenge": 127.85},
     "산업데이터공학과": {"safe": 130.97, "expected": 129.73, "challenge": 128.19},
